@@ -61,6 +61,11 @@ class DataUpdaterThread(object):
             latest_data = coverage_report[coverage_report['TEST_DATE'] == recent_date]
             first = True
 
+            # clear previous data before appending new data
+            self.instruction_data.clear()
+            self.branch_data.clear()
+            self.latest_coverage_data.clear()
+
             for i in range(len(instruction_df)):
                 self.instruction_data.append({'x': test_dates,
                                               'y': instruction_df.iloc[i, 1],
